@@ -15,13 +15,13 @@ class Person{
 }
 
 abstract class House{
-    protected door: true | false = false;
+    protected door: boolean= false;
     protected tenants: Person[] = [];
 
     constructor(protected key: Key){}
 
     comeIn(person: Person) {
-        if (this.door === true) {
+        if (this.door) {
             this.tenants.push(person);
         }
         
@@ -31,12 +31,10 @@ abstract class House{
 
 class MyHouse extends House{
 
-    constructor(key: Key) {
-        super(key)
-    }
     openDoor(key: number) {
         if (this.key.getSignature() === key) {
             this.door = true;
+            return;
         }
         this.door = false;
     }
